@@ -134,7 +134,7 @@ void loop()
     //Loop until we don't detect water AND 2 seconds of alarm have completed
     while(waterDifference > maxDifference || (millis() - startTime) < 2000)
     {
-      alarmSound(); //Make noise!!
+      alarmSound(); //Make noise!! // maybe only do this once in a while instead of all the time
 
       if(millis() - timeSinceBlink > 100) //Toggle the LED every 100ms
       {
@@ -147,6 +147,7 @@ void loop()
       }
 
       waterDifference = abs(analogRead(waterSensor) - waterAvg); //Take a new reading
+      // add a timeout-thing here and send out audible alarm + radio once every X minutes
       if (!helpAlerted) {
         sendMsg(water); // send watermsg - we should probably limit this one to 1-2x transmissions and cut down on the
         helpAlerted = 1;              // audible alarm too?
