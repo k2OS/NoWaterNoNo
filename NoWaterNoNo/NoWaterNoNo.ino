@@ -48,15 +48,15 @@
 #include <VirtualWire.h>
 
 // radio stuff
-int RF_TX_PIN = 3;
+int RF_TX_PIN = 1;
 const char *heartbeat = "SENSE00OK";
 const char *water = "SENSE00WATER";
 int helpAlerted = 0; // keeps track of wether we've send alert or not
 
 //Pin definitions for ATtiny
-const byte buzzer1 = 1;
-const byte buzzer2 = 2;
-const byte statLED = 0;
+const byte buzzer1 = 0;
+const byte buzzer2 = 3; 
+const byte statLED = 2;
 const byte waterSensor = A2; // pin 4
 
 //This is the average analog value found during startup. Usually ~995
@@ -82,7 +82,7 @@ void setup()
   delay(10);
 
   //pinMode(waterSensor, INPUT_PULLUP);
-  pinMode(4, INPUT); //When setting the pin mode we have to use 2 instead of A1
+  pinMode(4, INPUT); //When setting the pin mode we have to use 4 instead of A2
   digitalWrite(4, HIGH); //Hack for getting around INPUT_PULLUP
 
   //Take a series of readings from the water sensor and average them
